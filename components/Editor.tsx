@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import UploadImage from "./upload/UploadImage";
+import LayerPanel from "./layer/LayerPanel";
 
 const Editor = () => {
 	return (
-		<div>
-			<h1>Editor</h1>
+		<div className="flex h-full">
 			<UploadImage />
+			<LayerPanel />
 		</div>
 	);
 };
