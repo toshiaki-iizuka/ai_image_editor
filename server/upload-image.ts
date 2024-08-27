@@ -5,9 +5,9 @@ import { actionClient } from "@/lib/safe-action";
 import z from "zod";
 
 cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
+	cloud_name: "da3bwj8ga",
+	api_key: process.env.CLOUDINARY_KEY,
+	api_secret: process.env.CLOUDINARY_SECRET,
 });
 
 const formData = z.object({
@@ -20,10 +20,12 @@ type UploadResult =
 
 export const uploadImage = actionClient
 	.schema(formData)
-	.action(async ({ parsedInput: { image } }) => {
+	.action(async ({ parsedInput: { image } }): Promise<UploadResult> => {
+		console.log(image);
 		const formImage = image.get("image");
+
+		if (!formImage) return { error: "No image provided" };
 		if (!image) return { error: "No image provided" };
-		if (!formImage) return { error: "No image was provided" };
 
 		const file = formImage as File;
 
@@ -34,12 +36,17 @@ export const uploadImage = actionClient
 			return new Promise<UploadResult>((resolve, reject) => {
 				const uploadStream = cloudinary.uploader.upload_stream(
 					{
-						upload_preset: process.env.CLOUDINARY_NAME,
+						upload_preset: "ml_default",
+						use_filename: true,
+						unique_filename: false,
+						filename_override: file.name,
 					},
 					(error, result) => {
 						if (error || !result) {
+							console.error("Upload failed:", error);
 							reject({ error: "Upload failed" });
 						} else {
+							console.log("Upload successful:", result);
 							resolve({ success: result });
 						}
 					},
@@ -48,6 +55,7 @@ export const uploadImage = actionClient
 				uploadStream.end(buffer);
 			});
 		} catch (error) {
-			return { error: error };
+			console.error("Error processing file:", error);
+			return { error: "Error processing file" };
 		}
 	});

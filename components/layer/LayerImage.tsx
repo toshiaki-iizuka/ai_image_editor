@@ -6,7 +6,7 @@ import Image from "next/image";
 const LayerImage = ({ layer }: { layer: Layer }) => {
 	if (layer.url && layer.name)
 		return (
-			<div>
+			<>
 				<div className="w-12 h-12 flex items-center justify-center">
 					<Image
 						className="w-full object-contain h-full rounded-sm"
@@ -14,6 +14,7 @@ const LayerImage = ({ layer }: { layer: Layer }) => {
 						src={layer.format === "mp4" ? layer.poster || layer.url : layer.url}
 						width={50}
 						height={50}
+						priority
 					/>
 				</div>
 				<div className="relative">
@@ -21,7 +22,7 @@ const LayerImage = ({ layer }: { layer: Layer }) => {
 						layer.format
 					}`}</p>
 				</div>
-			</div>
+			</>
 		);
 };
 

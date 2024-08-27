@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import ActiveImage from "./upload/ActiveImage";
 import LayerPanel from "./layer/LayerPanel";
+import UploadForm from "./upload/UploadForm";
 import UploadImage from "./upload/UploadImage";
 import { ModeToggle } from "./theme/ModeToggle";
 
@@ -13,7 +15,8 @@ const Editor = () => {
 					<ModeToggle />
 				</div>
 			</div>
-			<UploadImage />
+			<UploadForm />
+			<ActiveImage />
 			<LayerPanel />
 		</div>
 	);
