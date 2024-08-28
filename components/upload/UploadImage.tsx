@@ -1,5 +1,7 @@
 "use client";
 
+import imageAnimation from "@/public/animations/image-upload.json";
+import Lottie from "lottie-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { uploadImage } from "@/server/upload-image";
@@ -74,6 +76,7 @@ const UploadImage = () => {
 				<CardContent className="flex flex-col h-full items-center justify-center px-2 py-24 text-xs">
 					<input {...getInputProps()} />
 					<div className="flex items-center flex-col justify-center gap-4">
+						<Lottie className="h-48" animationData={imageAnimation} />
 						<p className="text-muted-foreground text-2xl">
 							{isDragActive
 								? "Drop your image here!"
