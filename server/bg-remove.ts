@@ -11,16 +11,18 @@ cloudinary.config({
 	api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const genRemoveSchema = z.object({
-	prompt: z.string(),
+const bgRemoveSchema = z.object({
 	activeImage: z.string(),
+	format: z.string(),
 });
 
-export const genRemove = actionClient
-	.schema(genRemoveSchema)
-	.action(async ({ parsedInput: { prompt, activeImage } }) => {
+export const bgRemove = actionClient
+	.schema(bgRemoveSchema)
+	.action(async ({ parsedInput: { activeImage, format } }) => {
+		const form = activeImage.split(format);
+		const pngConvert = `${form[0]}png`;
 		const parts = activeImage.split("/upload/");
-		const removeUrl = `${parts[0]}/upload/e_gen_remove:${prompt}/${parts[1]}`;
+		const removeUrl = `${parts[0]}/upload/e_background_removal/${parts[1]}`;
 
 		let isProcessed = false;
 		const maxAttempts = 20;
