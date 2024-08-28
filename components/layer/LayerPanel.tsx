@@ -146,7 +146,7 @@ const LayerPanel = () => {
 					variant={"outline"}
 				>
 					<span className="text-xs">Create Layer</span>
-					<Layers2 className="text-secondary-foreground" size={18} />
+					<Layers2 className="text-secondary-foreground" size={14} />
 				</Button>
 				<Button
 					variant={layerComparisonMode ? "destructive" : "outline"}
@@ -164,7 +164,7 @@ const LayerPanel = () => {
 						{layerComparisonMode ? "Stop Comparing" : "Compare Layers"}
 					</span>
 					{!layerComparisonMode && (
-						<Images className="text-secondary-foreground" size={18} />
+						<Images className="text-secondary-foreground" size={14} />
 					)}
 				</Button>
 			</div>

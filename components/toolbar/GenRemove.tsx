@@ -64,7 +64,7 @@ const GenRemove = () => {
 								format: activeLayer.format,
 								height: activeLayer.height,
 								width: activeLayer.width,
-								name: `genRemoved${activeLayer.name}`,
+								name: `gen-removed-${activeLayer.name}`,
 								publicId: activeLayer.publicId,
 								resourceType: "image",
 							});
