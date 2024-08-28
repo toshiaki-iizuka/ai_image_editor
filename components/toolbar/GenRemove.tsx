@@ -1,20 +1,27 @@
 "use client";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Eraser } from "lucide-react";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { useImageStore } from "@/lib/image-store";
 import { useLayerStore } from "@/lib/layer-store";
-import { genRemove } from "@/server/gen-remove";
 import { useState } from "react";
 
+import { genRemove } from "@/server/gen-remove";
+
 const GenRemove = () => {
-	const setGenerating = useImageStore((state) => state.setGenerating);
 	const activeLayer = useLayerStore((state) => state.activeLayer);
+
 	const addLayer = useLayerStore((state) => state.addLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
+	const setGenerating = useImageStore((state) => state.setGenerating);
+
 	const [activeTag, setActiveTag] = useState("");
 
 	return (

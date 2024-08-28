@@ -1,7 +1,7 @@
 "use client";
 
 import UploadImage from "./UploadImage";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useLayerStore } from "@/lib/layer-store";
 import { useState } from "react";

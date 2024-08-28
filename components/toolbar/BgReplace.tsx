@@ -1,19 +1,23 @@
 "use client";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { ImageOff } from "lucide-react";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { useImageStore } from "@/lib/image-store";
 import { useLayerStore } from "@/lib/layer-store";
 import { useState } from "react";
+
 import { bgReplace } from "@/server/bg-replace";
 
 const BgReplace = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const generating = useImageStore((state) => state.generating);
-	const [activeTag, setActiveTag] = useState("");
 	const [prompt, setPrompt] = useState("");
 
 	const addLayer = useLayerStore((state) => state.addLayer);

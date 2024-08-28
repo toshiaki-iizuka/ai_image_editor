@@ -2,6 +2,7 @@
 
 import BgRemove from "./BgRemove";
 import BgReplace from "./BgReplace";
+import GenFill from "./GenFill";
 import GenRemove from "./GenRemove";
 
 const ImageTools = () => {
@@ -10,6 +11,7 @@ const ImageTools = () => {
 			<GenRemove />
 			<BgRemove />
 			<BgReplace />
+			<GenFill />
 		</>
 	);
 };

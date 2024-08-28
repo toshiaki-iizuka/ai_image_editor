@@ -3,14 +3,14 @@
 import Image from "next/image";
 import LayerImage from "./LayerImage";
 import LayerInfo from "./LayerInfo";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Images, Layers2 } from "lucide-react";
 import { useImageStore } from "@/lib/image-store";
