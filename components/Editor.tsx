@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import ActiveImage from "./upload/ActiveImage";
+import ImageTools from "./toolbar/ImageTools";
 import LayerPanel from "./layer/LayerPanel";
+import Loading from "./LoadingScreen";
 import UploadForm from "./upload/UploadForm";
-import UploadImage from "./upload/UploadImage";
 import { ModeToggle } from "./theme/ModeToggle";
 import { useLayerStore } from "@/lib/layer-store";
-import ImageTools from "./toolbar/ImageTools";
 
 const Editor = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
@@ -22,6 +21,7 @@ const Editor = () => {
 					{activeLayer.resourceType === "image" ? <ImageTools /> : null}
 				</div>
 			</div>
+			<Loading />
 			<UploadForm />
 			<ActiveImage />
 			<LayerPanel />
