@@ -25,11 +25,13 @@ const LayerInfo = ({
 
 	return (
 		<Dialog>
-			<DialogTrigger asChild>
-				<Button variant="outline">
-					<Ellipsis size={18} />
-				</Button>
-			</DialogTrigger>
+			<DialogTitle>
+				<DialogTrigger asChild>
+					<Button variant="outline">
+						<Ellipsis size={18} />
+					</Button>
+				</DialogTrigger>
+			</DialogTitle>
 			<DialogContent className="text-xs">
 				<h3 className="text-lg font-medium text-center mb-2">
 					Layer {layer.id}

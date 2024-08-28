@@ -21,7 +21,7 @@ export const bgRemove = actionClient
 	.action(async ({ parsedInput: { activeImage, format } }) => {
 		const form = activeImage.split(format);
 		const pngConvert = `${form[0]}png`;
-		const parts = activeImage.split("/upload/");
+		const parts = pngConvert.split("/upload/");
 		const removeUrl = `${parts[0]}/upload/e_background_removal/${parts[1]}`;
 
 		let isProcessed = false;

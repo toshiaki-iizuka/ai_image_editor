@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "../ui/button";
-import { Images } from "lucide-react";
+import { Image } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -24,7 +24,7 @@ const BgRemove = () => {
 				<Button variant="outline" className="py-8">
 					<span className="flex gap-1 items-center justify-center flex-col text-xs font-medium">
 						BG Removal
-						<Images size={18} />
+						<Image size={18} />
 					</span>
 				</Button>
 			</PopoverTrigger>
