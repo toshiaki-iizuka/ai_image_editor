@@ -18,11 +18,12 @@ import { bgReplace } from "@/server/bg-replace";
 const BgReplace = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const generating = useImageStore((state) => state.generating);
-	const [prompt, setPrompt] = useState("");
 
 	const addLayer = useLayerStore((state) => state.addLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
 	const setGenerating = useImageStore((state) => state.setGenerating);
+
+	const [prompt, setPrompt] = useState("");
 
 	return (
 		<Popover>
