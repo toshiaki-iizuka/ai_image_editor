@@ -55,6 +55,11 @@ const UploadVideo = () => {
 					setGenerating(false);
 					toast.error(res.data.error);
 				}
+
+				if (fileRejections.length) {
+					console.log("rejected");
+					toast.error(fileRejections[0].errors[0].message);
+				}
 			}
 		},
 	});
