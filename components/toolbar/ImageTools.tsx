@@ -10,12 +10,12 @@ import GenRemove from "./GenRemove";
 const ImageTools = () => {
 	return (
 		<>
-			<GenRemove />
-			<AIRecolor />
-			<BgRemove />
-			<BgReplace />
 			<GenFill />
+			<AIRecolor />
+			<GenRemove />
+			<BgReplace />
 			<ExtractPart />
+			<BgRemove />
 		</>
 	);
 };
