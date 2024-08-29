@@ -9,11 +9,14 @@ type State = {
 	setTags: (tags: string[]) => void;
 	activeTag: string;
 	setActiveTag: (tag: string) => void;
+	activeColor: string;
+	setActiveColor: (color: string) => void;
 	generating: boolean;
 	setGenerating: (generating: boolean) => void;
 };
 
 const getStore = (initialState: {
+	activeColor: string;
 	activeTag: string;
 	generating: boolean;
 }) => {
@@ -24,6 +27,8 @@ const getStore = (initialState: {
 				activeTag: initialState.activeTag,
 				setTags: (tags) => set({ tags }),
 				setActiveTag: (tag) => set({ activeTag: tag }),
+				activeColor: initialState.activeColor,
+				setActiveColor: (color) => set({ activeColor: color }),
 				generating: initialState.generating,
 				setGenerating: (generating) => set({ generating }),
 			}),
