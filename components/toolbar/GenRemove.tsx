@@ -17,6 +17,7 @@ import { useLayerStore } from "@/lib/layer-store";
 import { genRemove } from "@/server/gen-remove";
 
 const GenRemove = () => {
+	const activeColor = useImageStore((state) => state.activeColor);
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const activeTag = useImageStore((state) => state.activeTag);
 	const generating = useImageStore((state) => state.generating);
@@ -79,7 +80,9 @@ const GenRemove = () => {
 
 				<Button
 					className="w-full mt-4"
-					disabled={!activeTag || !activeLayer.url || generating}
+					disabled={
+						!activeTag || !activeColor || !activeLayer.url || generating
+					}
 					onClick={async () => {
 						const newLayerId = crypto.randomUUID();
 						setGenerating(true);

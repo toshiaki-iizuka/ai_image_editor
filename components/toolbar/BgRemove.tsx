@@ -13,6 +13,7 @@ import { useLayerStore } from "@/lib/layer-store";
 import { bgRemove } from "@/server/bg-remove";
 
 const BgRemove = () => {
+	const activeColor = useImageStore((state) => state.activeColor);
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const activeTag = useImageStore((state) => state.activeTag);
 	const generating = useImageStore((state) => state.generating);
@@ -40,7 +41,9 @@ const BgRemove = () => {
 					</div>
 				</div>
 				<Button
-					disabled={!activeLayer?.url || !activeTag || generating}
+					disabled={
+						!activeLayer?.url || !activeTag || !activeColor || generating
+					}
 					className="w-full mt-4"
 					onClick={async () => {
 						setGenerating(true);
@@ -51,7 +54,6 @@ const BgRemove = () => {
 						});
 
 						if (res?.data?.success) {
-							const newLayerId = crypto.randomUUID();
 							addLayer({
 								id: newLayerId,
 								name: `bg-removed-${activeLayer.name}`,
