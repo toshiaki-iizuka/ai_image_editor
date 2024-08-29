@@ -18,11 +18,7 @@ const UploadVideo = () => {
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		maxFiles: 1,
 		accept: {
-			"video/avi": [".avi", ".AVI"],
-			"video/flv": [".flv", ".FLV"],
-			"video/mov": [".mov", ".MOV"],
 			"video/mp4": [".mp4", ".MP4"],
-			"video/wmv": [".wmv", ".WMV"],
 		},
 		onDrop: async (acceptedFiles, fileRejections) => {
 			if (acceptedFiles.length) {
@@ -75,9 +71,7 @@ const UploadVideo = () => {
 								? "Drop your video here!"
 								: "Start by uploading a video"}
 						</p>
-						<p className="text-muted-foreground">
-							Supported Format: .avi .flv .mp4 .mov
-						</p>
+						<p className="text-muted-foreground">Supported Format: .mp4</p>
 					</div>
 				</CardContent>
 			</Card>

@@ -36,11 +36,8 @@ const ActiveImage = () => {
 					controls
 					className="rounded-lg object-contain max-w-full max-h-full"
 				>
-					<track
-						src={layer.transcriptionURL || layer.url}
-						default
-						kind="captions"
-					/>
+					<source src={layer.url} />
+					<track src={layer.transcriptionURL} default kind="captions" />
 				</video>
 			)}
 		</div>
