@@ -14,11 +14,11 @@ import { bgRemove } from "@/server/bg-remove";
 
 const BgRemove = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
+	const activeTag = useImageStore((state) => state.activeTag);
 	const generating = useImageStore((state) => state.generating);
-
-	const setGenerating = useImageStore((state) => state.setGenerating);
 	const addLayer = useLayerStore((state) => state.addLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
+	const setGenerating = useImageStore((state) => state.setGenerating);
 
 	return (
 		<Popover>
@@ -40,7 +40,7 @@ const BgRemove = () => {
 					</div>
 				</div>
 				<Button
-					disabled={!activeLayer?.url || generating}
+					disabled={!activeLayer?.url || !activeTag || generating}
 					className="w-full mt-4"
 					onClick={async () => {
 						setGenerating(true);
@@ -65,6 +65,7 @@ const BgRemove = () => {
 							setGenerating(false);
 							setActiveLayer(newLayerId);
 						}
+
 						if (res?.serverError) {
 							setGenerating(false);
 						}

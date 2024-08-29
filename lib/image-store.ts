@@ -5,14 +5,25 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { useStore } from "zustand";
 
 type State = {
+	tags: string[];
+	setTags: (tags: string[]) => void;
+	activeTag: string;
+	setActiveTag: (tag: string) => void;
 	generating: boolean;
 	setGenerating: (generating: boolean) => void;
 };
 
-const getStore = (initialState: { generating: boolean }) => {
+const getStore = (initialState: {
+	activeTag: string;
+	generating: boolean;
+}) => {
 	return createStore<State>()(
 		persist(
 			(set) => ({
+				tags: [],
+				activeTag: initialState.activeTag,
+				setTags: (tags) => set({ tags }),
+				setActiveTag: (tag) => set({ activeTag: tag }),
 				generating: initialState.generating,
 				setGenerating: (generating) => set({ generating }),
 			}),
