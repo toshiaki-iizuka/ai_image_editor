@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Captions } from "lucide-react";
 import { initiateTranscription } from "@/server/transcription";
+import { toast } from "sonner";
 import { useImageStore } from "@/lib/image-store";
 import { useLayerStore } from "@/lib/layer-store";
 import { useState } from "react";
@@ -16,6 +17,7 @@ const Transcription = () => {
 
 	const handleTranscribe = async () => {
 		if (!activeLayer.publicId || activeLayer.resourceType !== "video") {
+			toast.error("Please select a video layer first");
 			return;
 		}
 
@@ -29,19 +31,23 @@ const Transcription = () => {
 
 			if (result) {
 				if (result.data && "success" in result.data) {
+					toast.success(result.data.success);
+
 					if (result.data.subtitledVideoUrl) {
 						updateLayer({
 							...activeLayer,
 							transcriptionURL: result.data.subtitledVideoUrl,
 						});
 						setActiveLayer(activeLayer.id);
-					} else {
-						console.log(result.data.error);
 					}
+				} else if (result.data && "error" in result.data) {
+					toast.error(result.data.error);
+				} else {
+					toast.error("Unexpected response from server");
 				}
 			}
 		} catch (error) {
-			console.error(error);
+			toast.error("An error occurred during transcription");
 		} finally {
 			setTranscribing(false);
 			setGenerating(false);

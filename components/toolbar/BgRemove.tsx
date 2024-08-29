@@ -7,6 +7,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import { toast } from "sonner";
 import { useImageStore } from "@/lib/image-store";
 import { useLayerStore } from "@/lib/layer-store";
 
@@ -69,6 +70,7 @@ const BgRemove = () => {
 						}
 
 						if (res?.serverError) {
+							toast.error(res.serverError);
 							setGenerating(false);
 						}
 					}}
