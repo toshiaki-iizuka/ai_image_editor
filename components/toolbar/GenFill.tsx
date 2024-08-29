@@ -21,11 +21,9 @@ const EXPANSION_THRESHOLD = 250;
 const GenFill = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const generating = useImageStore((state) => state.generating);
-
 	const addLayer = useLayerStore((state) => state.addLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
 	const setGenerating = useImageStore((state) => state.setGenerating);
-
 	const [height, setHeight] = useState(0);
 	const [width, setWidth] = useState(0);
 

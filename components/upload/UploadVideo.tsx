@@ -13,6 +13,7 @@ const UploadVideo = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
 	const setGenerating = useImageStore((state) => state.setGenerating);
+	const setTags = useImageStore((state) => state.setTags);
 	const updateLayer = useLayerStore((state) => state.updateLayer);
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -24,7 +25,6 @@ const UploadVideo = () => {
 			if (acceptedFiles.length) {
 				const formData = new FormData();
 				formData.append("video", acceptedFiles[0]);
-				const objectUrl = URL.createObjectURL(acceptedFiles[0]);
 				setGenerating(true);
 
 				const res = await uploadVideo({ video: formData });
@@ -32,7 +32,7 @@ const UploadVideo = () => {
 				if (res?.data?.success) {
 					const videoUrl = res.data.success.url;
 					const thumbnailUrl = videoUrl.replace(/\.[^/.]+$/, ".jpg");
-					console.log(res.data.success);
+
 					updateLayer({
 						id: activeLayer.id,
 						url: res.data.success.url,
@@ -47,35 +47,35 @@ const UploadVideo = () => {
 
 					setActiveLayer(activeLayer.id);
 					setGenerating(false);
+					setTags(res.data.success.tags);
 				}
 				if (res?.data?.error) setGenerating(false);
 			}
 		},
 	});
 
-	if (!activeLayer.url)
-		return (
-			<Card
-				{...getRootProps()}
-				className={cn(
-					" hover:cursor-pointer hover:bg-secondary hover:border-primary transition-all ease-in-out",
-					`${isDragActive ? "animate-pulse border-primary bg-secondary" : ""}`,
-				)}
-			>
-				<CardContent className="flex flex-col h-full items-center justify-center px-2 py-24 text-xs">
-					<input {...getInputProps()} />
-					<div className="flex items-center flex-col justify-center gap-4">
-						<Lottie className="h-48" animationData={videoAnimation} />
-						<p className="text-muted-foreground text-2xl">
-							{isDragActive
-								? "Drop your video here!"
-								: "Start by uploading a video"}
-						</p>
-						<p className="text-muted-foreground">Supported Format: .mp4</p>
-					</div>
-				</CardContent>
-			</Card>
-		);
+	return (
+		<Card
+			{...getRootProps()}
+			className={cn(
+				"hover:cursor-pointer hover:bg-secondary hover:border-primary transition-all ease-in-out",
+				`${isDragActive ? "animate-pulse border-primary bg-secondary" : ""}`,
+			)}
+		>
+			<CardContent className="flex flex-col h-full items-center justify-center px-2 py-24 text-xs">
+				<input {...getInputProps()} />
+				<div className="flex items-center flex-col justify-center gap-4">
+					<Lottie className="h-48" animationData={videoAnimation} />
+					<p className="text-muted-foreground text-2xl">
+						{isDragActive
+							? "Drop your video here!"
+							: "Start by uploading a video"}
+					</p>
+					<p className="text-muted-foreground">Supported Format: .mp4</p>
+				</div>
+			</CardContent>
+		</Card>
+	);
 };
 
 export default UploadVideo;

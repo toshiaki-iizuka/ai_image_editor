@@ -13,6 +13,7 @@ const UploadImage = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
 	const setGenerating = useImageStore((state) => state.setGenerating);
+	const setTags = useImageStore((state) => state.setTags);
 	const updateLayer = useLayerStore((state) => state.updateLayer);
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -40,8 +41,8 @@ const UploadImage = () => {
 					format: "",
 					resourceType: "image",
 				});
+
 				setActiveLayer(activeLayer.id);
-				// STATE MANAGEMENT STUFF TO CREATE LAYERS, SET THE ACTIVE LAYER, AND SET THE IMAGE AS THE ACTIVE LAYER
 				const res = await uploadImage({ image: formData });
 
 				if (res?.data?.success) {
@@ -58,6 +59,7 @@ const UploadImage = () => {
 
 					setActiveLayer(activeLayer.id);
 					setGenerating(false);
+					setTags(res.data.success.tags);
 				}
 				if (res?.data?.error) setGenerating(false);
 			}
