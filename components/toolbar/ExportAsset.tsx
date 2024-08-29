@@ -87,7 +87,7 @@ const ExportAsset = ({ resource }: { resource?: string }) => {
 							<CardContent className="p-0">
 								<CardTitle className="text-md">Original</CardTitle>
 								<CardDescription>
-									{activeLayer.width}X{activeLayer.height}
+									{activeLayer.width}x{activeLayer.height}
 								</CardDescription>
 							</CardContent>
 						</Card>

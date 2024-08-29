@@ -90,7 +90,7 @@ const LayerPanel = () => {
 						</CardTitle>
 						{activeLayer.width && activeLayer.height ? (
 							<CardDescription className="text-xs">
-								{activeLayer.width}X{activeLayer.height}
+								{activeLayer.width}x{activeLayer.height}
 							</CardDescription>
 						) : null}
 					</div>
@@ -98,43 +98,47 @@ const LayerPanel = () => {
 			</CardHeader>
 			<motion.div className="flex-1 flex flex-col gap-2">
 				<AnimatePresence>
-					{visibleLayers.map((layer, index) => (
-						<motion.div
-							animate={{ scale: 1, opacity: 1 }}
-							initial={{ scale: 0, opacity: 0 }}
-							exit={{ scale: 0, opacity: 0 }}
-							className={cn(
-								"cursor-pointer ease-in-out hover:bg-secondary border border-transparent",
-								{
-									"animate-pulse": generating,
-									"border-primary": layerComparisonMode
-										? comparedLayers.includes(layer.id)
-										: activeLayer.id === layer.id,
-								},
-							)}
-							key={layer.id}
-							onClick={() => {
-								if (generating) return;
-								if (layerComparisonMode) {
-									toggleComparedLayer(layer.id);
-								} else {
-									setActiveLayer(layer.id);
-								}
-							}}
-						>
-							<div className="relative p-4 flex items-center">
-								<div className="flex gap-2 items-center h-8 w-full justify-between">
-									{!layer.url ? (
-										<p className="text-xs font-medium justify-self-end">
-											New Layer
-										</p>
-									) : null}
-									<LayerImage layer={layer} />
-									<LayerInfo layer={layer} layerIndex={index} />
+					{visibleLayers.map((layer, index) => {
+						return (
+							<motion.div
+								animate={{ scale: 1, opacity: 1 }}
+								initial={{ scale: 0, opacity: 0 }}
+								exit={{ scale: 0, opacity: 0 }}
+								className={cn(
+									"cursor-pointer ease-in-out hover:bg-secondary border border-transparent",
+									{
+										"animate-pulse": generating,
+										"border-primary": layerComparisonMode
+											? comparedLayers.includes(layer.id)
+											: activeLayer.id === layer.id,
+									},
+								)}
+								key={layer.id}
+								onClick={() => {
+									if (generating) return;
+									if (layerComparisonMode) {
+										toggleComparedLayer(layer.id);
+									} else {
+										setActiveLayer(layer.id);
+									}
+								}}
+							>
+								<div className="relative p-4 flex items-center">
+									<div className="flex gap-2 items-center h-8 w-full justify-between">
+										{!layer.url ? (
+											<p className="text-xs font-medium justify-self-end">
+												New Layer
+											</p>
+										) : null}
+										<LayerImage layer={layer} />
+										{layers.length !== 1 && (
+											<LayerInfo layer={layer} layerIndex={index} />
+										)}
+									</div>
 								</div>
-							</div>
-						</motion.div>
-					))}
+							</motion.div>
+						);
+					})}
 				</AnimatePresence>
 			</motion.div>
 			<CardContent className="sticky bottom-0 bg-card flex gap-2 p-4 shrink-0">

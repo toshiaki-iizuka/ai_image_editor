@@ -42,7 +42,7 @@ const LayerInfo = ({
 						<span className="font-bold">Format:</span> {layer.format}
 					</p>
 					<p>
-						<span className="font-bold">Size:</span> {layer.width}X
+						<span className="font-bold">Size:</span> {layer.width}x
 						{layer.height}
 					</p>
 				</div>
