@@ -1,5 +1,6 @@
 "use client";
 
+import AIRecolor from "./Recolor";
 import BgRemove from "./BgRemove";
 import BgReplace from "./BgReplace";
 import ExtractPart from "./ExtractPart";
@@ -10,6 +11,7 @@ const ImageTools = () => {
 	return (
 		<>
 			<GenRemove />
+			<AIRecolor />
 			<BgRemove />
 			<BgReplace />
 			<GenFill />
