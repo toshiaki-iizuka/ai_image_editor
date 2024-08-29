@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ImageComparison from "../layer/ImageComparison";
+import ImageComparison from "@/components/layer/ImageComparison";
 import { cn } from "@/lib/utils";
 import { useImageStore } from "@/lib/image-store";
 import { type Layer, useLayerStore } from "@/lib/layer-store";
@@ -35,9 +35,9 @@ const ActiveImage = () => {
 					height={layer.height}
 					controls
 					className="rounded-lg object-contain max-w-full max-h-full"
+					src={layer.transcriptionURL || layer.url}
 				>
-					<source src={layer.url} />
-					<track src={layer.transcriptionURL} default kind="captions" />
+					<track default kind="captions" />
 				</video>
 			)}
 		</div>

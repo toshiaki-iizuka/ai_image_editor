@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayerStore } from "@/lib/layer-store";
+import SmartCrop from "./SmartCrop";
 import Transcription from "./Transcription";
 
 const VideoTools = () => {
@@ -9,6 +10,7 @@ const VideoTools = () => {
 		return (
 			<>
 				<Transcription />
+				<SmartCrop />
 			</>
 		);
 };
