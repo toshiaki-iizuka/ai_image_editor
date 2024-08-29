@@ -4,6 +4,7 @@ import imageAnimation from "@/public/animations/image-upload.json";
 import Lottie from "lottie-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import { uploadImage } from "@/server/upload-image";
 import { useDropzone } from "react-dropzone";
 import { useImageStore } from "@/lib/image-store";
@@ -61,7 +62,11 @@ const UploadImage = () => {
 					setGenerating(false);
 					setTags(res.data.success.tags);
 				}
-				if (res?.data?.error) setGenerating(false);
+
+				if (res?.data?.error) {
+					setGenerating(false);
+					toast.error(res.data.error);
+				}
 			}
 		},
 	});

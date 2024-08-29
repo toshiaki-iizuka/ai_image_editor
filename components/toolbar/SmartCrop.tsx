@@ -17,6 +17,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import { toast } from "sonner";
 import { useImageStore } from "@/lib/image-store";
 import { useLayerStore } from "@/lib/layer-store";
 import { useState } from "react";
@@ -26,7 +27,6 @@ import { genCrop } from "@/server/gen-crop";
 const SmartCrop = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
 	const generating = useImageStore((state) => state.generating);
-	const layers = useLayerStore((state) => state.layers);
 	const addLayer = useLayerStore((state) => state.addLayer);
 	const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
 	const setGenerating = useImageStore((state) => state.setGenerating);
@@ -57,9 +57,13 @@ const SmartCrop = () => {
 				resourceType: "video",
 				poster: thumbnailUrl,
 			});
+
+			toast.success(res.data.success);
 			setActiveLayer(newLayerId);
 		}
+
 		if (res?.data?.error) {
+			toast.error(res.data.error);
 			setGenerating(false);
 		}
 	};

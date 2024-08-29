@@ -4,6 +4,7 @@ import videoAnimation from "@/public/animations/video-upload.json";
 import Lottie from "lottie-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import { uploadVideo } from "@/server/upload-video";
 import { useDropzone } from "react-dropzone";
 import { useImageStore } from "@/lib/image-store";
@@ -49,7 +50,11 @@ const UploadVideo = () => {
 					setGenerating(false);
 					setTags(res.data.success.tags);
 				}
-				if (res?.data?.error) setGenerating(false);
+
+				if (res?.data?.error) {
+					setGenerating(false);
+					toast.error(res.data.error);
+				}
 			}
 		},
 	});
