@@ -8,6 +8,7 @@ export default function Home() {
 	return (
 		<ImageStore.Provider
 			initialValue={{
+				activeColor: "green",
 				activeTag: "all",
 				generating: false,
 			}}
