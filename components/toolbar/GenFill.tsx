@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Crop } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -96,14 +97,19 @@ const GenFill = () => {
 					};
 
 		return (
-			{ isVisible } && (
-				<div
-					className="absolute bg-secondary text-primary px-2 py-1 rounded-md text-xs font-bold"
+			<AnimatePresence>
+				{isVisible} && (
+				<motion.div
+					initial={{ opacity: 0, scale: 0.5 }}
+					animate={{ opacity: 1, scale: 1 }}
+					exit={{ opacity: 0, scale: 0.5 }}
+					className="absolute bg-primary text-white px-2 py-1 rounded-md text-xs font-bold"
 					style={position}
 				>
 					{Math.abs(value)}px
-				</div>
-			)
+				</motion.div>
+				)
+			</AnimatePresence>
 		);
 	};
 

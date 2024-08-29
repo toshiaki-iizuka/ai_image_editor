@@ -1,8 +1,9 @@
 import Image from "next/image";
 import ImageComparison from "@/components/layer/ImageComparison";
 import { cn } from "@/lib/utils";
-import { useImageStore } from "@/lib/image-store";
 import { type Layer, useLayerStore } from "@/lib/layer-store";
+import { motion } from "framer-motion";
+import { useImageStore } from "@/lib/image-store";
 
 const ActiveImage = () => {
 	const activeLayer = useLayerStore((state) => state.activeLayer);
@@ -49,9 +50,14 @@ const ActiveImage = () => {
 			.filter(Boolean) as Layer[];
 
 		return (
-			<div className="w-full relative h-svh p-24 bg-secondary flex flex-col items-center justify-center">
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				className="w-full relative h-svh p-24 bg-secondary flex flex-col items-center justify-center"
+			>
 				<ImageComparison layers={comparisonLayers} />
-			</div>
+			</motion.div>
 		);
 	}
 
